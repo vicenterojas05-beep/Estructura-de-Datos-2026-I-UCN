@@ -1,9 +1,11 @@
 # Ayudantía Estructura de Datos
 
 **Profesor de Cátedra:** Bastián Ruiz
+
 **Ayudante:** Pablo Guzmán
+
 **Período:** 2026 - I
----
+
 
 ## Introducción
 
@@ -126,6 +128,32 @@ Muchos de ustedes ya tienen experiencia con POO en Java. Recuerden:
 - **Punteros vs referencias:** Java tiene referencias manejadas; C++ tiene punteros explícitos
 - **Compilación:** C++ compila a código nativo, no a bytecode
 - **Control de memoria:** Mayor poder, pero también mayor responsabilidad
+
+### Memoria local, global y heap (aclaración clave)
+
+En C++ no toda la memoria es igual. Es importante distinguir:
+
+- **Memoria local (automática, stack):** Variables declaradas dentro de funciones o bloques (por ejemplo `int x = 5;`). Se crean al entrar al bloque y se destruyen automáticamente al salir. **No usan `new` ni requieren `delete`.**
+- **Memoria global/estática:** Variables globales o `static`. Existen durante toda la ejecución del programa y el sistema las libera al terminar. **Tampoco se manejan con `new/delete`.**
+- **Memoria dinámica (heap):** Se reserva manualmente con `new` o `new[]` y vive hasta que se libere con `delete` o `delete[]`.
+
+Regla práctica:
+
+- Si usaste `new`, debes usar `delete`.
+- Si usaste `new[]`, debes usar `delete[]`.
+
+Si no se libera memoria dinámica, ocurre una **fuga de memoria** (memory leak): el programa pierde acceso a ese bloque y no puede reutilizarlo.
+
+Errores típicos al comenzar:
+
+- Hacer `delete` dos veces al mismo puntero (double delete).
+- Usar un puntero después de liberar su memoria (dangling pointer).
+- Olvidar liberar en todos los caminos posibles del programa (por ejemplo, en retornos tempranos).
+
+Buenas prácticas recomendadas para el curso y proyectos reales:
+
+- Preferir contenedores de la STL (`vector`, `string`, etc.) cuando sea posible.
+- En código moderno, preferir punteros inteligentes (`unique_ptr`, `shared_ptr`) para reducir errores manuales.
 
 Esta transición las hará mejores programadores al obligarlos a entender qué sucede realmente "bajo el capó".
 
