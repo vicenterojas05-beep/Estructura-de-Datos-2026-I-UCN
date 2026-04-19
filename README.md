@@ -32,12 +32,16 @@ C++ es un lenguaje robusto, eficiente y ampliamente usado en sistemas de alto re
 
 Las ayudantías del semestre se encuentran organizadas en las siguientes carpetas:
 
+### PP1
+
 - **[Ayudantía 1](Ayudantía%201/README.md)** - Introducción a C++ y punteros
 - **[Ayudantía 2](Ayudantía%202/README.md)** - POO en C++, herencia y polimorfismo
 - **[Ayudantía 3](Ayudantía%203/README.md)** - Organización de archivos, Listas enlazadas y Stack 
 - **[Ayudantía 4](Ayudantía%204/README.md)** - Complejidad algorítmica, listas, pilas y colas
-- **[Compendio](Compendio/README.md)** - Banco de ejercicios por temas y soluciones para la PP1
 - **[Intensiva I](Intensiva%20I/README.md)** - Ruta seleccionada para la intensiva PP1
+- **[Compendio](Compendio/README.md)** - Banco de ejercicios por temas y soluciones para la PP1
+
+### PP2
 
 ---
 

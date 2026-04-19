@@ -1,6 +1,6 @@
 ﻿# Intensiva I: Ruta Intensiva I
 
-Este archivo contiene solo los ejercicios de la Ruta Intensiva I, en orden.
+Este archivo contiene solo los ejercicios de la Intensiva I, en orden.
 
 ## Ejercicios seleccionados
 
@@ -47,6 +47,31 @@ int main() {
 }
 ```
 
+### Ejercicio I.7
+
+```cpp
+#include <iostream>
+using namespace std;
+
+void cambio(int** pp, int* r) {
+    **pp = **pp + 1;
+    *pp = r;
+    **pp = **pp + 4;
+}
+
+int main() {
+    int a = 2;
+    int b = 10;
+    int* p = &a;
+
+    cambio(&p, &b);
+    *p = *p * 2;
+
+    cout << a << " " << b << endl;
+    return 0;
+}
+```
+
 ### Ejercicio II.10
 
 ```cpp
@@ -73,23 +98,6 @@ int main() {
     delete p;
     return 0;
 }
-```
-
-### Ejercicio III.5
-
-```cpp
-#include <iostream>
-using namespace std;
-
-class Base {
-public:
-    void mostrar() { cout << "Base" << endl; }
-};
-
-class Hijo : public Base {
-public:
-    void mostrar() override { cout << "Hijo" << endl; }
-};
 ```
 
 ### Ejercicio IV.5
@@ -122,39 +130,36 @@ Responda cuál estructura conviene más entre:
 
 Justifique en términos de operaciones y complejidad.
 
-### Ejercicio V.6
-
-```cpp
-void removePrimes(Node*& head);
-```
-
-La lista contiene enteros positivos. Elimine todos los nodos cuyo valor sea primo.
-
 ### Ejercicio VI.5
 
+Implemente una función que decodifique cadenas con el formato:
+```text
+K[text]
+```
+Donde `K` es un entero positivo y `text` se repite `K` veces.  
+La cadena puede contener **anidamiento**
+```text
+Ej: K1[text1K2[text2K3...[...]]].
+```
+
+Firma:
 ```cpp
 string decodeString(string s);
 ```
 
-Use pilas para decodificar cadenas del tipo `K[text]`, permitiendo anidamiento.
+Ejemplos de ejecución:
 
-### Ejercicio VII.3
+| Entrada | Salida |
+|--------|--------|
+| `5[abcd]` | `abcdabcdabcdabcdabcd` |
+| `3[ab2[cd]]` | `abcdcdabcdcdabcdcd` |
 
-Si una clase base tiene métodos virtuales, entonces su destructor no necesita ser virtual.
+Consideraciones:
 
-### Ejercicio VIII.4
-
-Si se tiene `Padre* p = new Hijo();`, ¿qué condición es importante para liberar correctamente el objeto con `delete p;`?
-
-A. Que `Hijo` no tenga constructor.
-B. Que `Padre` tenga destructor virtual.
-C. Que `Padre` tenga todos sus métodos `private`.
-D. Que `Hijo` no sobrescriba métodos.
-E. Que `p` sea una referencia y no un puntero.
-
-### Ejercicio IX.6
-
-Una pila sigue la política __________________, mientras que una cola sigue la política __________________.
+- Solución **iterativa (sin recursión)**
+- `text` contiene solo letras (`a-z`, `A-Z`)
+- Si aparece un número, siempre precede a `[`
+- Puedes usar `isdigit(c)` para detectar números
 
 ### Ejercicio X.6
 
@@ -180,7 +185,9 @@ void ordenarRamosPorPromedio(RamoNode*& headRamos);
 
 que ordene los ramos de un alumno desde mayor a menor promedio.
 
-Este ejercicio es de dificultad alta y apunta a entrenar problemas donde una lista enlazada no almacena solo enteros, sino también **punteros a otras listas**.
+Este ejercicio apunta a entrenar problemas donde una lista enlazada no almacena solo enteros, sino también **punteros a otras listas**.
+
+# Pendientes... 
 
 ### Ejercicio X.10
 
@@ -205,31 +212,23 @@ struct Pos {
 Implemente:
 
 ```cpp
-int distanciaMinimaSalida(char lab[][MAX], int filas, int cols, int fIni, int cIni);
+bool hayCaminoSalidaQueue(char lab[][MAX], int filas, int cols, int fIni, int cIni);
+bool hayCaminoSalidaStack(char lab[][MAX], int filas, int cols, int fIni, int cIni);
 ```
 
-La función debe retornar la **cantidad mínima de movimientos** necesarios para llegar desde `(fIni, cIni)` hasta alguna salida `E`.
-
-Si no existe camino, debe retornar `-1`.
+Cada función debe retornar `true` si existe algun camino desde `(fIni, cIni)` hasta una salida `E`, y `false` en caso contrario.
 
 Restricciones y requisitos:
 
-- use explícitamente una `queue<Pos>`;
+- implemente una version con `queue<Pos>` y otra con `stack<Pos>`;
 - no use recursión;
-- justifique por qué una cola resulta más adecuada que una pila cuando se pide distancia mínima.
+- use una matriz de visitados para no repetir celdas.
 
 Explique además:
 
-1. qué estado representa la cola;
-2. por qué la cola permite explorar el tablero por capas;
+1. qué estado guardan la pila y la cola;
+2. por qué ambas estructuras sirven para responder existencia de camino;
 3. complejidad temporal y espacial.
-
-Este bloque final (`X.9`, `X.10` y `X.11`) está pensado para reforzar la idea de **guardar estados** y procesarlos con estructuras adecuadas:
-
-- estados discretos de un problema clásico;
-- recorrido por capas en una matriz;
-- existencia de solución versus distancia mínima;
-- comparación de frecuencias de caracteres con pila o cola.
 
 ### Ejercicio X.9
 
@@ -274,4 +273,3 @@ Explique además:
 1. qué representa un estado;
 2. por qué una cola es adecuada para buscar la solución de menor cantidad de cruces;
 3. cómo se valida que un estado sea seguro.
-

@@ -68,28 +68,6 @@ Derivada::f
 ~Base()
 ```
 
-## Ejercicio III.5
-Error:
-
-`override` solo puede usarse si el método de la clase base es `virtual`. En el código original, `Base::mostrar()` no es virtual.
-
-Versión corregida:
-
-```cpp
-#include <iostream>
-using namespace std;
-
-class Base {
-public:
-    virtual void mostrar() { cout << "Base" << endl; }
-};
-
-class Hijo : public Base {
-public:
-    void mostrar() override { cout << "Hijo" << endl; }
-};
-```
-
 ## Ejercicio IV.5
 Código:
 
@@ -128,45 +106,6 @@ Justificación:
 - Una pila o cola imponen políticas de acceso más restrictivas que una lista simple.
 
 ---
-
-## Ejercicio V.6
-```cpp
-bool isPrime(int value) {
-    if (value < 2) return false;
-    for (int d = 2; d * d <= value; d++) {
-        if (value % d == 0) return false;
-    }
-    return true;
-}
-
-void removePrimes(Node*& head) {
-    while (head != nullptr && isPrime(head->data)) {
-        Node* toDelete = head;
-        head = head->next;
-        delete toDelete;
-    }
-
-    Node* current = head;
-    while (current != nullptr && current->next != nullptr) {
-        if (isPrime(current->next->data)) {
-            Node* toDelete = current->next;
-            current->next = toDelete->next;
-            delete toDelete;
-        } else {
-            current = current->next;
-        }
-    }
-}
-```
-
-Idea:
-
-Se recorre la lista y se elimina todo nodo cuyo valor sea primo. La primalidad se decide con un chequeo hasta la raiz cuadrada del valor.
-
-Complejidad:
-
-- Tiempo: `O(n * sqrt(M))`, donde `M` es el mayor valor de la lista
-- Espacio adicional: `O(1)`
 
 ## Ejercicio VI.5
 ```cpp
@@ -221,23 +160,6 @@ Complejidad:
 - Tiempo: `O(n + |resultado|)`
 - Espacio adicional: `O(n + |resultado|)`
 
-## Ejercicio VII.3
-Falso.
-
-Corrección:
-
-Si una clase base se usará para destruir objetos derivados mediante puntero base, su destructor debe ser virtual.
-
-## Ejercicio VIII.4
-Respuesta correcta: `B`.
-
-Para destruir correctamente por puntero base (`Padre* p = new Hijo(); delete p;`), la clase base debe tener destructor virtual.
-
-## Ejercicio IX.6
-Respuesta sugerida: `LIFO / FIFO`.
-
-Una pila sigue política LIFO (Last In, First Out) y una cola sigue política FIFO (First In, First Out).
-
 ## Ejercicio X.6
 Pseudocodigo propuesto:
 
@@ -260,40 +182,38 @@ struct AlumnoNode {
     AlumnoNode* next; // lista circular
 };
 
-double promedioRamo(RamoNode* ramo) {
-    double suma = 0.0;
-    double sumaPonderaciones = 0.0;
-    NotaNode* nota = ramo->notas;
-
-    while (nota != nullptr) {
-        suma += nota->nota * nota->ponderacion;
-        sumaPonderaciones += nota->ponderacion;
-        nota = nota->next;
-    }
-
-    if (sumaPonderaciones == 0.0) return -1.0;
-    return suma / sumaPonderaciones;
-}
-
-double calcularPromedio(AlumnoNode* head, string nombreAlumno, string ramo) {
+double calcularPromedio(AlumnoNode* head, string nombreAlumno, string nombreRamo) {
     if (head == nullptr) return -1.0;
 
-    AlumnoNode* alumno = head;
-    do {
-        if (alumno->nombre == nombreAlumno) {
-            RamoNode* actualRamo = alumno->ramos;
-            while (actualRamo != nullptr) {
-                if (actualRamo->nombre == ramo) {
-                    return promedioRamo(actualRamo);
-                }
-                actualRamo = actualRamo->next;
-            }
-            return -1.0;
-        }
-        alumno = alumno->next;
-    } while (alumno != head);
+    // Buscar alumno en lista circular
+    AlumnoNode* nodoAlumno = head;
+    while (nodoAlumno->nombre != nombreAlumno) {
+        nodoAlumno = nodoAlumno->next;
+        if (nodoAlumno == head) return -1.0; // no se encontró
+    }
 
-    return -1.0;
+    // Buscar ramo en lista simple
+    RamoNode* nodoRamo = nodoAlumno->ramos;
+    while (nodoRamo != nullptr && nodoRamo->nombre != nombreRamo) {
+        nodoRamo = nodoRamo->next;
+    }
+
+    if (nodoRamo == nullptr) return -1.0; // no se encontró el ramo
+
+    // Calcular promedio ponderado
+    double suma = 0.0;
+    double sumaPonderaciones = 0.0;
+
+    NotaNode* nodoNota = nodoRamo->notas;
+    while (nodoNota != nullptr) {
+        suma += nodoNota->nota * nodoNota->ponderacion;
+        sumaPonderaciones += nodoNota->ponderacion;
+        nodoNota = nodoNota->next;
+    }
+
+    if (sumaPonderaciones == 0.0) return -1.0; // evitar división por cero
+
+    return suma / sumaPonderaciones;
 }
 
 void ordenarRamosPorPromedio(RamoNode*& headRamos) {
@@ -325,26 +245,23 @@ void ordenarRamosPorPromedio(RamoNode*& headRamos) {
 
 Idea estructural:
 
-- La lista circular de alumnos permite recorrer el curso completo sin perder el inicio.
-- Cada alumno apunta a su lista de ramos.
-- Cada ramo apunta a su lista de evaluaciones con ponderacion.
+- Primero se busca el alumno.
+- Luego se busca el ramo dentro de ese alumno.
+- Finalmente se recorre la lista de notas y se calcula el promedio ponderado.
 
 Complejidad:
 
 - `calcularPromedio`: `O(a + r + n)` en el peor caso
 - `ordenarRamosPorPromedio`: `O(r^2 * n)` si se recalcula el promedio en cada comparacion
 
-Observacion:
-
-Si se quisiera optimizar, convendria calcular una vez el promedio de cada ramo y almacenarlo temporalmente.
-
 ## Ejercicio X.10
 Implementacion posible:
 
 ```cpp
 #include <queue>
+#include <stack>
 
-const int MAX = 50;
+const int n = 50;
 
 struct Pos {
     int f;
@@ -352,14 +269,14 @@ struct Pos {
     Pos(int f, int c) : f(f), c(c) {}
 };
 
-int distanciaMinimaSalida(char lab[][MAX], int filas, int cols, int fIni, int cIni) {
-    if (fIni < 0 || fIni >= filas || cIni < 0 || cIni >= cols) return -1;
-    if (lab[fIni][cIni] == '#') return -1;
+bool hayCaminoSalidaQueue(char lab[][n], int filas, int cols, int fIni, int cIni) {
+    if (fIni < 0 || fIni >= filas || cIni < 0 || cIni >= cols) return false;
+    if (lab[fIni][cIni] == '#') return false;
 
-    int dist[MAX][MAX];
+    bool visitado[n][n];
     for (int i = 0; i < filas; i++) {
         for (int j = 0; j < cols; j++) {
-            dist[i][j] = -1;
+            visitado[i][j] = false;
         }
     }
 
@@ -368,15 +285,13 @@ int distanciaMinimaSalida(char lab[][MAX], int filas, int cols, int fIni, int cI
 
     queue<Pos> q;
     q.push(Pos(fIni, cIni));
-    dist[fIni][cIni] = 0;
+    visitado[fIni][cIni] = true;
 
     while (!q.empty()) {
         Pos actual = q.front();
         q.pop();
 
-        if (lab[actual.f][actual.c] == 'E') {
-            return dist[actual.f][actual.c];
-        }
+        if (lab[actual.f][actual.c] == 'E') return true;
 
         for (int k = 0; k < 4; k++) {
             int nf = actual.f + df[k];
@@ -384,34 +299,81 @@ int distanciaMinimaSalida(char lab[][MAX], int filas, int cols, int fIni, int cI
 
             if (nf >= 0 && nf < filas &&
                 nc >= 0 && nc < cols &&
-                dist[nf][nc] == -1 &&
+                !visitado[nf][nc] &&
                 lab[nf][nc] != '#') {
-                dist[nf][nc] = dist[actual.f][actual.c] + 1;
+                visitado[nf][nc] = true;
                 q.push(Pos(nf, nc));
             }
         }
     }
 
-    return -1;
+    return false;
+}
+
+bool hayCaminoSalidaStack(char lab[][n], int filas, int cols, int fIni, int cIni) {
+    if (fIni < 0 || fIni >= filas || cIni < 0 || cIni >= cols) return false;
+    if (lab[fIni][cIni] == '#') return false;
+
+    bool visitado[n][n];
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < cols; j++) {
+            visitado[i][j] = false;
+        }
+    }
+
+    int df[4] = {-1, 1, 0, 0};
+    int dc[4] = {0, 0, -1, 1};
+
+    stack<Pos> st;
+    st.push(Pos(fIni, cIni));
+    visitado[fIni][cIni] = true;
+
+    while (!st.empty()) {
+        Pos actual = st.top();
+        st.pop();
+
+        if (lab[actual.f][actual.c] == 'E') return true;
+
+        for (int k = 0; k < 4; k++) {
+            int nf = actual.f + df[k];
+            int nc = actual.c + dc[k];
+
+            if (nf >= 0 && nf < filas &&
+                nc >= 0 && nc < cols &&
+                !visitado[nf][nc] &&
+                lab[nf][nc] != '#') {
+                visitado[nf][nc] = true;
+                st.push(Pos(nf, nc));
+            }
+        }
+    }
+
+    return false;
 }
 ```
 
-Qué estado representa la cola:
+Que estado guardan la cola y la pila:
 
-La cola guarda la frontera actual de exploración. Cada posición encolada ya tiene asociada su distancia mínima conocida desde el punto inicial.
+Ambas guardan posiciones pendientes por explorar en el laberinto.
 
-Por qué la cola es adecuada cuando se pide distancia mínima:
+- `queue<Pos>`: procesa por orden de llegada (FIFO).
+- `stack<Pos>`: procesa el ultimo agregado primero (LIFO).
 
-Porque una cola FIFO expande primero todas las posiciones a distancia `d` antes de pasar a las de distancia `d + 1`. Eso garantiza que la primera vez que se alcanza una salida, la distancia obtenida es mínima.
+Por que ambas sirven para existencia de camino:
 
-Contraste con la pila:
+Para responder solo si existe camino, no importa explorar por capas o por profundidad: basta con recorrer las celdas alcanzables sin repetirlas. Si en algun momento aparece una celda `E`, se retorna `true`.
 
-Una pila sirve para explorar caminos y responder existencia, pero no garantiza encontrar primero el camino más corto.
+Diferencia clave:
+
+- Con cola (BFS) se explora por capas.
+- Con pila (DFS iterativo) se avanza por profundidad.
+
+En este ejercicio ambas son validas porque la pregunta es de existencia, no de distancia minima.
 
 Complejidad:
 
 - Tiempo: `O(filas * cols)`
-- Espacio adicional: `O(filas * cols)` entre cola y matriz de distancias
+- Espacio adicional: `O(filas * cols)` entre estructura auxiliar y matriz de visitados
 
 ## Ejercicio X.9
 Implementacion posible:
