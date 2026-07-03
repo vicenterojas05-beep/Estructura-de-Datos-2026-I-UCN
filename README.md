@@ -1,199 +1,195 @@
-# Ayudantía Estructura de Datos
+# Estructura de Datos - UCN
 
-**Profesor de Cátedra:** Bastián Ruiz
+Repositorio de apoyo para el curso **Estructura de Datos** de la Universidad Católica del Norte.
 
-**Ayudante:** Pablo Guzmán
+El material reúne ayudantías, apuntes, intensivas y compendios de ejercicios orientados a comprender cómo se organizan los datos en memoria, cómo se recorren, cómo se modifican y qué costo tienen las operaciones principales sobre cada estructura.
 
-**Período:** 2026 - I
+**Profesor de cátedra:** Bastián Ruiz  
+**Ayudante:** Pablo Guzmán  
+**Periodo base:** 2026-I
 
-## Contenido
+## Organización del repositorio
 
-- [Introducción](#introduccion)
-- [¿Qué son "Data Structures and Algorithms"?](#que-son-data-structures-and-algorithms)
-- [Desafíos para Nuevos Programadores](#desafios-para-nuevos-programadores)
-- [C++ y su Importancia en Programación](#c-y-su-importancia-en-programacion)
-- [📚 Ayudantías](#-ayudantias)
-  - [PP1](#pp1)
-  - [PP2](#pp2)
-- [Temario](#temario)
-  - [Conceptos Fundamentales](#conceptos-fundamentales)
-  - [Estructuras de Datos](#estructuras-de-datos)
-- [Nota Importante: Transición desde Java](#nota-importante-transicion-desde-java)
-  - [Memoria local, global y heap (aclaración clave)](#memoria-local-global-y-heap-aclaracion-clave)
+```text
+Estructura-de-Datos-UCN/
+|-- Ayudantías/
+|   |-- 2026-S1/
+|   |-- 2026-S2/
+|-- Compendio/
+|-- README.md
+```
 
-## Drive complementario de recopilación
+- [Ayudantías 2026-S1](<Ayudantías/2026-S1/README.md>): índice de ayudantías, intensivas y apuntes del semestre.
+- `Ayudantías/2026-S2/`: carpeta reservada para el material del siguiente periodo.
+- [Compendio](Compendio/README.md): banco de ejercicios por tema para PP1 y PP2, con enunciados y soluciones.
+
+## Drive complementario
 
 - [Drive Estructura de Datos UCN](https://drive.google.com/drive/u/1/folders/1FYQ9pW4oi6wDTOiPmnqvGxrakmT2eb6Y)
 
 ## Introducción
 
-Bienvenido a las ayudantías de Estructura de Datos del semestre 2026-I. Este curso es fundamental en tu formación como programador, combinando teoría algorítmica con implementación práctica en C++. Las estructuras de datos son la base sobre la cual se construyen soluciones eficientes y escalables.
+Estructura de Datos es un curso central en la formación de cualquier programador, porque conecta la teoría algorítmica con la implementación concreta. Aquí no basta con saber escribir instrucciones: también hay que decidir **cómo representar la información** para que las operaciones sean correctas, eficientes y razonables según el problema.
 
-## ¿Qué son "Data Structures and Algorithms"?
+Una estructura de datos no es solamente una colección de valores. Es una forma de organizar memoria, relaciones y operaciones. Elegir entre un arreglo, una lista enlazada, una pila, una cola, un árbol, una tabla hash o un grafo cambia la manera en que el programa inserta, elimina, busca, recorre y transforma datos.
 
-Las estructuras de datos y algoritmos forman el corazón de la informática. Una **estructura de datos** es una forma de organizar información en memoria para que sea accesible y modificable de manera eficiente, mientras que un **algoritmo** es un procedimiento paso a paso para resolver un problema o realizar una tarea computacional. Juntas, determinan la velocidad, eficiencia en memoria y viabilidad de cualquier solución de software.
+## ¿Qué son las estructuras de datos y los algoritmos?
 
-## Desafíos para Nuevos Programadores
+Una **estructura de datos** es una forma de organizar información en memoria para que pueda ser accedida y modificada de manera eficiente. Un **algoritmo** es un procedimiento paso a paso para resolver un problema.
 
-- **Pensamiento abstracto:** Visualizar cómo los datos se organizan en memoria no es trivial
-- **Análisis de complejidad:** Aprender a evaluar la eficiencia de soluciones (Big O)
-- **Trade-offs de diseño:** Entender cuándo usar qué estructura según el contexto
-- **Transición desde Java:** Los estudiantes de este curso ya dominan POO en Java, pero deben adaptarse a C++ con gestión manual de memoria y mayor control del sistema
+Ambos conceptos se estudian juntos porque la eficiencia de una solución depende de la relación entre:
 
-## C++ y su Importancia en Programación
+- La forma en que los datos están almacenados.
+- Las operaciones que se quieren realizar.
+- La frecuencia con que se ejecutan esas operaciones.
+- El costo temporal y espacial de cada decisión.
 
-C++ es un lenguaje robusto, eficiente y ampliamente usado en sistemas de alto rendimiento, juegos, bases de datos y aplicaciones críticas. Su acceso directo a la memoria mediante punteros, compilación a código nativo y control fino de recursos lo hacen ideal para aprender estructuras de datos. Aunque Java abstrae muchos conceptos, **C++ te obliga a entender realmente cómo funcionan las cosas**, lo que profundiza tu comprensión fundamental de la programación.
+Por ejemplo, una lista enlazada puede ser cómoda para insertar nodos en ciertas posiciones, pero no ofrece acceso directo por índice como un vector. Un árbol puede ordenar datos de forma jerárquica, pero su rendimiento depende de su forma. Una tabla hash puede ofrecer búsqueda promedio muy rápida, pero exige entender colisiones y función hash.
 
----
+## Desafíos del curso
 
-## 📚 Ayudantías
+- **Pensamiento abstracto:** visualizar cómo los datos se conectan en memoria no siempre es inmediato.
+- **Análisis de complejidad:** cada estructura debe estudiarse junto con el costo de buscar, insertar, eliminar y recorrer.
+- **Compromisos de diseño:** no existe una estructura universalmente mejor; cada una responde a necesidades distintas.
+- **Transición desde Java:** quienes vienen de POO en Java deben adaptarse a C++, punteros, referencias, destructores y control explícito de memoria.
 
-Las ayudantías del semestre se encuentran organizadas en las siguientes carpetas:
+## C++ y su importancia
 
-### Compendio
+C++ es un lenguaje robusto, eficiente y ampliamente usado en sistemas de alto rendimiento, videojuegos, motores gráficos, bases de datos y software donde el control de recursos es importante.
 
-- **[Compendio](Compendio/README.md)** - Banco de ejercicios por temas y soluciones para la PP1 y PP2
+Su acceso directo a memoria mediante punteros, su compilación a código nativo y su control fino de recursos lo convierten en un buen lenguaje para estudiar estructuras de datos. Java oculta muchos detalles mediante referencias administradas y recolección de basura; C++, en cambio, obliga a entender qué ocurre con los objetos, las direcciones de memoria y el ciclo de vida de los datos.
 
-### PP1
+## Temario del curso
 
-- **[Ayudantía 1](Ayudantía%201/README.md)** - Introducción a C++ y punteros
-- **[Ayudantía 2](Ayudantía%202/README.md)** - POO en C++, herencia y polimorfismo
-- **[Ayudantía 3](Ayudantía%203/README.md)** - Organización de archivos, Listas enlazadas y Stack 
-- **[Ayudantía 4](Ayudantía%204/README.md)** - Complejidad algorítmica, listas, pilas y colas
-- **[Ayudantía 5](Ayudantía%205/README.md)** - Repaso final antes de la PP1
-- **[Intensiva I](Intensiva%20I/README.md)** - Ruta seleccionada para la intensiva PP1
+### Conceptos fundamentales
 
-### PP2
+#### 1. Programación en C++
 
-- **[Ayudantí­a 6](Ayudantía%206/README.md)** - Recorridos de árboles binarios
-- **[Ayudantía 7](Ayudantía%207/README.md)** - Heaps y HeapSort
-- **[Ayudantía 8](Ayudantía%208/README.md)** - Árboles AVL
-- **[Ayudantía 9](Ayudantía%209/README.md)** - Algoritmos recursivos e iterativos con árboles
-- **[Ayudantía 10](Ayudantía%2010/README.md)** - Grafos: representaciones, BFS y DFS
-- **[Intensiva II](Intensiva%20II/README.md)** - Ruta seleccionada para la intensiva PP2
-- **[Apunte final PP2](Apunte%20final%20PP2/README.md)** - Recorridos genéricos en árboles y grafos
+Sintaxis básica, tipos de datos, funciones, entrada y salida, compilación, separación de archivos y estructura general de un programa en C++.
 
-## Temario
+#### 2. Punteros y memoria
 
-### Conceptos Fundamentales
+Los punteros permiten almacenar direcciones de memoria y son esenciales para construir estructuras dinámicas. En este curso se estudian junto con `new`, `delete`, referencias, paso de parámetros y errores típicos de memoria.
 
-#### 1. **Programación en C++**
-Sintaxis básica, tipos de datos, funciones, y estructura general de un programa C++.
+#### 3. POO en C++
 
-#### 2. **Punteros**
-Entender qué son los punteros, gestión de memoria (new/delete), y por qué son cruciales para estructuras de datos dinámicas.
+Clases, encapsulamiento, herencia y polimorfismo aplicados en C++. También se revisa la diferencia con Java: constructores, destructores, constructores de copia, operador de asignación, puntero `this` y manejo explícito de recursos.
 
-#### 3. **Programación Orientada a Objetos (POO) en C++**
-Clases, herencia, encapsulación y polimorfismo. Adaptación desde Java a C++, incluyendo destructores, constructores de copia y el concepto de *this*.
+#### 4. Librería estándar de C++
 
-#### 4. **Librería STD y Documentación**
-La Standard Template Library (STL) proporciona implementaciones eficientes de estructuras de datos comunes:
-- `vector<T>` - arreglos dinámicos.
-Comunes: `push_back` (agrega al final), `pop_back` (elimina el último), `size` (cantidad de elementos), `operator[]` (acceso por índice sin verificación), `at` (acceso por índice con verificación), `front` (primer elemento), `back` (último elemento), `begin` (iterador al inicio), `end` (iterador al final).
-	- Documentación: <https://en.cppreference.com/w/cpp/container/vector>
+La STL entrega implementaciones eficientes de estructuras de uso común. No reemplaza la necesidad de entender cómo funcionan, pero sirve como referencia práctica y profesional.
 
-- `pair<T1,T2>` - par de valores.
-Comunes: `first` (accede al primer valor), `second` (accede al segundo valor), `make_pair` (crea un `pair` deduciendo tipos).
-	- Documentación: <https://en.cppreference.com/w/cpp/utility/pair>
+- `vector<T>`: arreglo dinámico. Operaciones comunes: `push_back`, `pop_back`, `size`, `operator[]`, `at`, `front`, `back`, `begin`, `end`. Documentación: <https://en.cppreference.com/w/cpp/container/vector>
+- `pair<T1,T2>`: par de valores. Operaciones comunes: `first`, `second`, `make_pair`. Documentación: <https://en.cppreference.com/w/cpp/utility/pair>
+- `list<T>`: lista doblemente enlazada. Operaciones comunes: `push_back`, `push_front`, `pop_back`, `pop_front`, `insert`, `erase`, `front`, `back`. Documentación: <https://en.cppreference.com/w/cpp/container/list>
+- `stack<T>`: pila LIFO. Operaciones comunes: `push`, `pop`, `top`, `empty`, `size`. Documentación: <https://en.cppreference.com/w/cpp/container/stack>
+- `queue<T>`: cola FIFO. Operaciones comunes: `push`, `pop`, `front`, `back`, `empty`, `size`. Documentación: <https://en.cppreference.com/w/cpp/container/queue>
+- `map<K,V>`: diccionario ordenado por clave, usualmente implementado sobre árbol balanceado. Documentación: <https://en.cppreference.com/w/cpp/container/map>
+- `unordered_map<K,V>`: tabla hash. Operaciones comunes: `insert`, `erase`, `find`, `count`, `operator[]`, `at`, `bucket_count`, `load_factor`. Documentación: <https://en.cppreference.com/w/cpp/container/unordered_map>
+- `set<T>`: conjunto ordenado de claves únicas. Operaciones comunes: `insert`, `erase`, `find`, `count`, `contains`. Documentación: <https://en.cppreference.com/w/cpp/container/set>
+- Algoritmos de la STL: `sort`, `find`, `reverse` y otras operaciones sobre rangos.
 
-- `list<T>` - lista doblemente enlazada.
-Comunes: `push_back` (agrega al final), `push_front` (agrega al inicio), `pop_back` (elimina el último), `pop_front` (elimina el primero), `insert` (inserta en posición dada por iterador), `erase` (elimina en posición dada por iterador), `front` (primer elemento), `back` (último elemento).
-	- Documentación: <https://en.cppreference.com/w/cpp/container/list>
+### Estructuras de datos
 
-- `stack<T>` - pila (LIFO).
-Comunes: `push` (apila un elemento), `pop` (desapila el tope), `top` (consulta el tope), `empty` (verifica si está vacía), `size` (cantidad de elementos).
-	- Documentación: <https://en.cppreference.com/w/cpp/container/stack>
+#### 1. Vectores
 
-- `queue<T>` - cola (FIFO).
-Comunes: `push` (encola al final), `pop` (desencola el primero), `front` (consulta el primero), `back` (consulta el último), `empty` (verifica si está vacía), `size` (cantidad de elementos).
-	- Documentación: <https://en.cppreference.com/w/cpp/container/queue>
+Arreglos dinámicos que crecen bajo demanda. Permiten acceso por índice en `O(1)` porque sus elementos se almacenan de forma contigua. Son eficientes para lectura y recorrido secuencial, pero insertar o eliminar en posiciones intermedias puede ser costoso.
 
-- `map<K,V>` - diccionario ordenado por clave (árbol balanceado).
-Comunes: `insert` (inserta clave-valor), `erase` (elimina por clave/iterador), `find` (busca una clave), `count` (indica si existe la clave), `operator[]` (accede o crea valor por clave), `at` (accede con verificación de existencia).
-	- Documentación: <https://en.cppreference.com/w/cpp/container/map>
+#### 2. Listas enlazadas
 
-- `unordered_map<K,V>` - tabla hash.
-Comunes: `insert` (inserta clave-valor), `erase` (elimina por clave/iterador), `find` (busca una clave), `count` (indica si existe la clave), `operator[]` (accede o crea valor por clave), `at` (accede con verificación de existencia), `bucket_count` (cantidad de buckets), `load_factor` (factor de carga actual).
-	- Documentación: <https://en.cppreference.com/w/cpp/container/unordered_map>
+Estructuras formadas por nodos conectados mediante punteros. Cada nodo almacena un dato y una o más referencias hacia otros nodos. Son útiles para insertar o eliminar sin desplazar grandes bloques de memoria, aunque no permiten acceso directo por índice.
 
-- `set<T>` - conjunto de claves únicas (ordenado).
-Comunes: `insert` (agrega un valor único), `erase` (elimina un valor), `find` (busca un valor), `count` (indica si existe el valor), `contains` (verifica pertenencia de forma directa).
-	- Documentación: <https://en.cppreference.com/w/cpp/container/set>
+#### 3. Pilas y colas
 
-- Algoritmos: `sort()` (ordena un rango), `find()` (busca un valor en un rango), `reverse()` (invierte el orden de un rango), etc.
+- **Pila:** estructura LIFO, donde el último elemento en entrar es el primero en salir. Ayuda a entender llamadas recursivas, deshacer operaciones y evaluación de expresiones.
+- **Cola:** estructura FIFO, donde el primer elemento en entrar es el primero en salir. Se usa en simulaciones, planificación de tareas y recorridos por niveles.
 
----
+#### 4. Matriz poco poblada
 
-### Estructuras de Datos
+Representación eficiente de matrices con muchos ceros. En lugar de almacenar todas las posiciones, se guardan solo los elementos relevantes, reduciendo memoria y enfocando las operaciones en datos no nulos.
 
-#### 1. **Vectores**
-Arreglos dinámicos que crecen bajo demanda. Entender la **indexación por memoria**: cómo acceder a elementos en O(1) usando aritmética de direcciones, por qué son eficientes en lectura pero costosos en inserciones.
+#### 5. Tablas hash
 
-#### 2. **Listas Enlazadas (LinkedList)**
-Estructuras flexibles donde cada elemento (nodo) apunta al siguiente. Complejas en memoria pero eficientes para inserciones y eliminaciones. Incluye variantes como listas doblemente enlazadas y listas circulares.
+Estructuras que usan una función hash para asociar claves con posiciones internas. Permiten búsquedas promedio rápidas, pero requieren estudiar colisiones, encadenamiento, sondeo y factor de carga. En términos prácticos, se parecen al concepto de diccionario en Python.
 
-#### 3. **Pilas (Stacks) y Colas (Queues)**
-- **Pilas (LIFO):** Último en entrar, primero en salir. Aplicación crítica: **pila de recursión** - entender cómo funciona la recursión internamente
-- **Colas (FIFO):** Primero en entrar, primero en salir. Útiles en procesamiento de tareas y simulaciones.
+#### 6. Árboles
 
-#### 4. **Matriz poco poblada (SparseMatrix)**
-Representación eficiente de matrices con gran cantidad de ceros, almacenando solo los elementos no nulos para optimizar memoria y operaciones relevantes.
+Estructuras jerárquicas con raíz, nodos, hijos, hojas, altura y profundidad. Incluyen árboles binarios, árboles binarios de búsqueda, heaps y árboles balanceados como AVL.
 
-#### 5. **Tablas Hash**
-Estructura basada en función hash para acceso promedio en tiempo constante. Se estudian colisiones, encadenamiento y sondeo, además de casos de uso como diccionarios y conteo de frecuencias. Equivalente al diccionario en python.
+#### 7. Árboles B*
 
-#### 6. **Árboles**
-Estructuras jerárquicas con un nodo raíz y múltiples ramas. Incluye:
-- Árboles binarios y búsqueda binaria (BST)
-- **Heaps (pilas binarias):** Árboles especiales para colas de prioridad, ordenamiento eficiente (HeapSort)
-- Árboles balanceados (AVL, Red-Black)
+Árboles de búsqueda multi-ramificados optimizados para acceso a disco. Son importantes en bases de datos e indexación, porque reducen accesos costosos agrupando múltiples claves por nodo.
 
-#### 7. **Árboles B***
-Árboles de búsqueda multi-ramificados optimizados para acceso a disco. Fundamentales en bases de datos e indexación de archivos.
+#### 8. Grafos
 
-#### 8. **Grafos**
-Estructuras generales que conectan múltiples nodos. El porqué de dos algoritmos clave:
-- **DFS (Depth-First Search):** Exploración en profundidad - útil para detectar ciclos, componentes conexas, ordenamiento topológico (Se hace con un Stack).
-- **BFS (Breadth-First Search):** Exploración en amplitud - útil para caminos más cortos, nivel de profundidad (Se hace con una Queue).
+Estructuras generales formadas por vértices y aristas. Permiten modelar redes, rutas, dependencias, conexiones y relaciones arbitrarias. Dos recorridos centrales son:
 
----
+- **DFS:** exploración en profundidad, normalmente apoyada por pila o recursión.
+- **BFS:** exploración en amplitud, normalmente apoyada por cola.
 
-## Nota Importante: Transición desde Java
+## Compendio de ejercicios
 
-Muchos de ustedes ya tienen experiencia con POO en Java. Recuerden:
-- **No hay recolección automática de basura:** Deben gestionar memoria manualmente (new/delete)
-- **Punteros vs referencias:** Java tiene referencias manejadas; C++ tiene punteros explícitos
-- **Compilación:** C++ compila a código nativo, no a bytecode
-- **Control de memoria:** Mayor poder, pero también mayor responsabilidad
+El [Compendio](Compendio/README.md) queda en la raíz porque funciona como banco general de estudio del curso, no como material de una ayudantía específica.
 
-### Memoria local, global y heap (aclaración clave)
+- **PP1:** punteros, arreglos, herencia, polimorfismo, listas, pilas, colas, complejidad, verdadero/falso, selección múltiple y ejercicios integradores.
+- **PP2:** recorridos de árboles, AVL, HeapSort, algoritmos con árboles, BFS, DFS, algoritmos de grafos, verdadero/falso, selección múltiple y ejercicios integradores.
 
-En C++ no toda la memoria es igual. Es importante distinguir:
+## Nota importante: transición desde Java
 
-- **Memoria local (automática, stack):** Variables declaradas dentro de funciones o bloques (por ejemplo `int x = 5;`). Se crean al entrar al bloque y se destruyen automáticamente al salir. **No usan `new` ni requieren `delete`.**
-- **Memoria global/estática:** Variables globales o `static`. Existen durante toda la ejecución del programa y el sistema las libera al terminar. **Tampoco se manejan con `new/delete`.**
-- **Memoria dinámica (heap):** Se reserva manualmente con `new` o `new[]` y vive hasta que se libere con `delete` o `delete[]`.
+Muchos estudiantes llegan a este curso con experiencia en POO en Java. Esa base ayuda, pero C++ exige cambiar algunas ideas:
+
+- **No hay recolección automática de basura:** la memoria dinámica debe gestionarse explícitamente.
+- **Punteros y referencias no son lo mismo:** Java trabaja con referencias administradas; C++ permite manipular direcciones y referencias con reglas distintas.
+- **La compilación es distinta:** C++ compila a código nativo, no a bytecode.
+- **Hay más control y más responsabilidad:** el lenguaje permite optimizar y acercarse a la memoria, pero también facilita errores si no se administra bien.
+
+### Memoria local, global y heap
+
+En C++ no toda memoria tiene el mismo ciclo de vida:
+
+- **Memoria local o automática:** variables declaradas dentro de funciones o bloques. Se crean al entrar al bloque y se destruyen al salir. No usan `new` ni requieren `delete`.
+- **Memoria global o estática:** variables globales o `static`. Existen durante toda la ejecución del programa.
+- **Memoria dinámica o heap:** memoria reservada manualmente con `new` o `new[]`. Debe liberarse con `delete` o `delete[]`.
 
 Regla práctica:
 
 - Si usaste `new`, debes usar `delete`.
 - Si usaste `new[]`, debes usar `delete[]`.
 
-Si no se libera memoria dinámica, ocurre una **fuga de memoria** (memory leak): el programa pierde acceso a ese bloque y no puede reutilizarlo.
+Errores típicos:
 
-Errores típicos al comenzar:
+- Liberar dos veces el mismo puntero.
+- Usar un puntero después de liberar su memoria.
+- Perder la referencia a memoria dinámica sin liberarla.
+- No considerar retornos tempranos o excepciones al liberar recursos.
 
-- Hacer `delete` dos veces al mismo puntero (double delete).
-- Usar un puntero después de liberar su memoria (dangling pointer).
-- Olvidar liberar en todos los caminos posibles del programa (por ejemplo, en retornos tempranos).
+Buenas prácticas:
 
-Buenas prácticas recomendadas para el curso y proyectos reales:
+- Preferir contenedores de la STL cuando resuelvan bien el problema.
+- Entender primero la estructura manualmente antes de depender de una implementación ya hecha.
+- En código moderno, considerar punteros inteligentes como `unique_ptr` y `shared_ptr` cuando corresponda.
 
-- Preferir contenedores de la STL (`vector`, `string`, etc.) cuando sea posible.
-- En código moderno, preferir punteros inteligentes (`unique_ptr`, `shared_ptr`) para reducir errores manuales.
+## Nota sobre niveles de abstracción
 
-Esta transición las hará mejores programadores al obligarlos a entender qué sucede realmente "bajo el capó".
+Estructura de Datos se ubica en un nivel posterior a la programación básica, POO y técnicas iniciales de modelado. Aquí la abstracción principal ya no es una línea de código ni una clase aislada, sino el **contenedor**: una organización de datos y operaciones que se puede aplicar a muchos problemas distintos.
 
----
+En Programación se piensa cerca de la secuencia:
 
-**¡Bienvenidos al fascinante mundo de las estructuras de datos!**
+```text
+input -> proceso 1 -> proceso 2 -> proceso 3 -> output
+```
+
+En POO y Técnicas se empieza a pensar en dominios, clases, relaciones y componentes básicos. En Estructura de Datos ese componente se estudia con mayor profundidad: una lista enlazada, un árbol, una tabla hash o un grafo no son solamente clases; son formas de organizar información, definir invariantes y razonar sobre costos.
+
+Este curso corresponde al **nivel 2** de la progresión:
+
+| Nivel | Curso o enfoque | Forma principal de pensar |
+| --- | --- | --- |
+| 0 | [Programación](https://github.com/NicoCG32/Programacion-UCN) | Líneas de código, instrucciones, pasos directos y algoritmos básicos. |
+| 1 | [Programación Orientada a Objetos](https://github.com/NicoCG32/Programacion-Orientada-a-Objetos-UCN) y [Técnicas y Metodologías](https://github.com/NicoCG32/Tecnicas-y-Metodologias-de-Programacion-Avanzada-UCN) | Dominio, clases, objetos, relaciones y componentes básicos. |
+| 2 | [Estructura de Datos](https://github.com/NicoCG32/Estructura-de-Datos-UCN) | Contenedores, organización de datos, invariantes y algoritmos sobre estructuras. |
+| 3 | [Patrones de Software y Programación](https://github.com/NicoCG32/Patrones-de-Software-y-Programacion-UCN) | Componentes, composición de clases, dependencias y arquitectura de software. |
+
+La idea importante es que cada estructura representa una decisión de diseño. No se estudia una lista, un árbol o un grafo para memorizar código, sino para entender cuándo esa forma de organización hace que un problema sea más simple, más eficiente o más expresivo.
+
+**Bienvenido al estudio de las estructuras de datos: el punto donde los datos dejan de ser valores sueltos y empiezan a formar sistemas de organización.**
