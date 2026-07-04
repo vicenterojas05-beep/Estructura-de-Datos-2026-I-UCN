@@ -1,5 +1,12 @@
 # Estructura de Datos - UCN
 
+![C++](https://img.shields.io/badge/C%2B%2B-Curso-00599C?logo=cplusplus&logoColor=white)
+![CLion](https://img.shields.io/badge/IDE-CLion-000000?logo=clion&logoColor=white)
+![VS Code](https://img.shields.io/badge/IDE-VS%20Code-007ACC?logo=visualstudiocode&logoColor=white)
+![GDB Online](https://img.shields.io/badge/Online-GDB%20Online-2E8B57)
+![Dev C++](https://img.shields.io/badge/Examen-Embarcadero%20Dev--C%2B%2B-B22222)
+![Nivel](https://img.shields.io/badge/Nivel-2%20Estructuras%20de%20datos-success)
+
 Repositorio de apoyo para el curso **Estructura de Datos** de la Universidad Católica del Norte.
 
 El material reúne ayudantías, apuntes, intensivas y compendios de ejercicios orientados a comprender cómo se organizan los datos en memoria, cómo se recorren, cómo se modifican y qué costo tienen las operaciones principales sobre cada estructura.
@@ -8,15 +15,21 @@ El material reúne ayudantías, apuntes, intensivas y compendios de ejercicios o
 **Ayudante:** Pablo Guzmán  
 **Periodo base:** 2026-I
 
+## Entorno del curso
+
+El curso se desarrolla principalmente en **C++**. A diferencia de otros ramos, no hay un IDE único que defina el curso: se puede trabajar en CLion, VS Code, GDB Online u otro entorno equivalente.
+
+Las evaluaciones también pueden variar. Algunas pueden ser a papel, usando pseudocódigo cercano a C++; otras pueden ser en computador, usando entornos como **Embarcadero Dev-C++** o **GDB Online**. Lo importante no es el editor, sino comprender punteros, memoria, estructuras dinámicas, recorridos y costos algorítmicos.
+
 ## Organización del repositorio
 
 ```text
 Estructura-de-Datos-UCN/
-|-- Ayudantías/
-|   |-- 2026-S1/
-|   |-- 2026-S2/
-|-- Compendio/
-|-- README.md
+├── Ayudantías/
+│   ├── 2026-S1/
+│   └── 2026-S2/
+├── Compendio/
+└── README.md
 ```
 
 - [Ayudantías 2026-S1](<Ayudantías/2026-S1/README.md>): índice de ayudantías, intensivas y apuntes del semestre.
